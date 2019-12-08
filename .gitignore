@@ -4,6 +4,7 @@ someOtherfoler/
 code/
 dist/
 .cache/
+.vscode/
 
 # Compiled source #
 ###################
