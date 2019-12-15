@@ -1,21 +1,16 @@
-interface ISortable {
-    length: number;
-    swap(index: number): void;
-    compare(index: number): boolean;
-}
-
-export class Sorter {
-    constructor(public collection: ISortable) {};
+export abstract class Sorter {
+    abstract length: number;
+    abstract compare (index: number): boolean;
+    abstract swap (index: number): void;
 
     sort():void {
-        let arrLength = this.collection.length;
-        while(arrLength > 0) {
-            for(let i = 0; i < arrLength-1; i++) {
-                if (this.collection.compare(i)) {
-                    this.collection.swap(i);
+        let { length } = this;
+        for (let i = 0; i < length; i++) {
+            for (let j = 0; j < length - i - 1; j++) {
+                if(this.compare(j)) {
+                    this.swap(j);
                 }
             }
-            arrLength--;
         }
     }
 }
