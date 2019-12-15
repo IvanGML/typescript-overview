@@ -3,6 +3,7 @@ node_modules/
 someOtherfoler/
 code/
 dist/
+build/
 .cache/
 .vscode/
 

@@ -1,0 +1,17 @@
+export class NumbersCollection {
+    constructor(public data: number[]) {}
+
+    get length():number {
+        return this.data.length;
+    }
+
+    compare(elementIndex: number):boolean {
+        return this.data[elementIndex] > this.data[elementIndex + 1];
+    }
+
+    swap(elementIndex: number):void {
+        let temp = this.data[elementIndex];
+        this.data[elementIndex] = this.data[elementIndex+1];
+        this.data[elementIndex+1] = temp;
+    }
+}
