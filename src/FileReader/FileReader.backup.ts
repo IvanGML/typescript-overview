@@ -1,6 +1,6 @@
 import fs from 'fs';
 import { getDateFromString } from './utils'
-import { MatchResult, MatchData } from './MatchResult';
+import { MatchResult, MatchData } from './MatchResult.types';
 
 
 export class CsvFileReader {
