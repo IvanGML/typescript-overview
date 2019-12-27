@@ -1,4 +1,9 @@
+import axios, { AxiosResponse } from "axios";
+
+const host = 'http://localhost:3000/users/';
+
 export interface UserProps {
+    id?: number;
     name?: string;
     age?: number;
 };
@@ -27,5 +32,22 @@ export class User {
         const handler = this.events[eventName];
         if(!handler || handler.length === 0) return;
         handler.forEach(callback => callback());
+    }
+
+    fetch(): void {
+        axios.get(`${host}${this.get('id')}`)
+            .then((response: AxiosResponse) => {
+                this.set(response.data);
+            })
+    }
+
+    save(): void {
+        const id = this.get('id');
+
+        if(id) {
+            axios.put(`${host}${id}`, this.data);
+        } else {
+            axios.post(`${host}`, this.data);
+        }
     }
 };
