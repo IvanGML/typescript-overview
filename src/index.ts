@@ -1,15 +1,17 @@
-import { MatchResult, MatchData } from './FileReader/MatchResult.types';
+import { CsvFileReader } from './FileReader/CsvFileReader';
 import { MatchReader } from './FileReader/MatchReader';
+import { Summary } from './FileReader/Summary';
+import { WinsAnalises } from './FileReader/analizers/WinsAnalizer';
+import { ConsoleOutput } from './FileReader/printers/ConsoleOutput';
+import { HTMLOutput } from './FileReader/printers/HTMLOutput';
 
-const footbalData = new MatchReader('football.csv');
-footbalData.read();
+const readFile = new CsvFileReader('football.csv');
+const footbalData = new MatchReader(readFile);
 
-let manUnitedWins = 0;
+const analizeManUnited = new Summary(
+    new WinsAnalises('Huddersfield'),
+    new HTMLOutput()
+);
+analizeManUnited.buildAndPrintReport(footbalData.matches);
 
-footbalData.data.forEach((item: MatchData)=>{
-    let teamWinHome = item.indexOf('Man United') === 1 && item.indexOf(MatchResult.HomeWin) === 5;
-    let teamWinAway = item.indexOf('Man United') === 2 && item.indexOf(MatchResult.AwayWin) === 5;
-    if(teamWinHome || teamWinAway) manUnitedWins++;
-});
 
-console.log(`Man United wins: ${manUnitedWins} times.`);
