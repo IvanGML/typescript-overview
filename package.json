@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/IvanGML/typescript-overview/issues"
   },
-  "homepage": "https://github.com/IvanGML/typescript-overview#readme"
+  "homepage": "https://github.com/IvanGML/typescript-overview#readme",
+  "devDependencies": {
+    "typescript": "^3.7.4"
+  }
 }
