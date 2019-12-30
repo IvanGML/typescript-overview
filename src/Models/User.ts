@@ -1,6 +1,7 @@
 import { Eventing } from './Eventing';
 import { Sync } from './Sync';
 import { Attributes } from './Attributes';
+import { AxiosResponse, AxiosError } from 'axios';
 
 export interface UserProps {
     id?: number;
@@ -34,5 +35,27 @@ export class User {
     set(data: UserProps): void {
         this.attributs.set(data);
         this.events.trigger('change');
+    }
+
+    fetch(): void {
+        const id = this.attributs.get('id');
+
+        if(typeof id !== 'number') {
+            throw new Error('Imposible to fetch without and id.')
+        }
+
+        this.sync.fetch(id).then((response: AxiosResponse): void => {
+            this.set(response.data);
+        })
+    }
+
+    save(): void {
+        this.sync.save(this.attributs.getAll())
+            .then((response: AxiosResponse) => {
+                this.trigger('save');
+            })
+            .catch((error: AxiosError) => {
+                this.trigger('error');
+            })
     }
 };
