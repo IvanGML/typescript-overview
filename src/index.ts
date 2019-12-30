@@ -5,4 +5,5 @@ const user = new User({name: 'Ivan', age: 39});
 console.log(user.get('name'));
 
 user.on('change', () => console.log('user changed'));
-user.trigger('change');
+user.set({ name: 'Peter' })
+console.log(user);
