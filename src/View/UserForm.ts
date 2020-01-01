@@ -4,16 +4,32 @@ export class UserForm {
     constructor(
         public parent: Element,
         public model: User
-    ) {}
+    ) {
+        this.bindModel();
+    }
+
+    bindModel(): void {
+        this.model.on('change', () => {
+            this.render();
+        });
+    }
 
     eventsMap(): { [key: string]: () => void } {
         return {
             'click:.set-age': this.onSetAgeClick,
+            'click:.update-name': this.onUpdateNameClick,
         }
     }
 
-    onSetAgeClick(): void {
-        console.log('clicked');
+    onUpdateNameClick = (): void => {
+        const input = this.parent.querySelector('input');
+        if (input) {
+            this.model.set({ name: input.value})
+        }
+    }
+
+    onSetAgeClick = (): void => {
+        this.model.setRandomAge();
     }
     
     template(): string {
@@ -24,7 +40,7 @@ export class UserForm {
                 <div>User age: ${this.model.get('age')}</div>
                 <input type="text">
                 <button class="set-age">Set random age</button>
-                <button>Click Me</button>
+                <button class="update-name">Update name</button>
             </div>
         `;
     }
@@ -42,6 +58,7 @@ export class UserForm {
     }
 
     render(): void {
+        this.parent.innerHTML = '';
         const templateElement = document.createElement('template');
         templateElement.innerHTML = this.template();
         this.bindEvents(templateElement.content);

@@ -3,8 +3,14 @@ import { User } from './Models/User';
 
 const user = User.buildUser({ name: 'Johnny', age: 49 })
 
-const userForm = new UserForm(document.getElementById('root'), user);
-userForm.render();
+const root = document.getElementById('root');
+
+if (root) {
+    const userForm = new UserForm(root, user);
+    userForm.render();    
+} else {
+    throw new Error('Root element not found.')
+}
 
 // const users = User.userCollection();
 // users.fetch();
