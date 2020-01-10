@@ -1,0 +1,29 @@
+{
+  "name": "typescript-overview",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start:db": "json-server -w db.json",
+    "start:parcel": "parcel index.html",
+    "start": "concurrently npm:start:*"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/IvanGML/typescript-overview.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/IvanGML/typescript-overview/issues"
+  },
+  "homepage": "https://github.com/IvanGML/typescript-overview#readme",
+  "dependencies": {
+    "axios": "^0.19.0",
+    "concurrently": "^5.0.2",
+    "parcel": "^1.12.4",
+    "typescript": "^3.7.4"
+  }
+}
