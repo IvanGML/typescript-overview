@@ -1,0 +1,27 @@
+{
+  "name": "typescript-overview",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/IvanGML/typescript-overview.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/IvanGML/typescript-overview/issues"
+  },
+  "homepage": "https://github.com/IvanGML/typescript-overview#readme",
+  "devDependencies": {
+    "typescript": "^3.6.4"
+  },
+  "dependencies": {
+    "@types/googlemaps": "^3.38.0",
+    "faker": "^4.1.0"
+  }
+}
