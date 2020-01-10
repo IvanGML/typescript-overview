@@ -18,6 +18,10 @@
   },
   "homepage": "https://github.com/IvanGML/typescript-overview#readme",
   "devDependencies": {
-    "typescript": "^3.7.4"
+    "typescript": "^3.6.4"
+  },
+  "dependencies": {
+    "@types/googlemaps": "^3.38.0",
+    "faker": "^4.1.0"
   }
 }
