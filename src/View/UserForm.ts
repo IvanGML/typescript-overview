@@ -11,7 +11,7 @@ export class UserForm extends View<User, UserProps> {
     }
 
     saveModelClick = (): void => {
-        this.model.save()
+        this.model.save();
     }
 
     onUpdateNameClick = (): void => {

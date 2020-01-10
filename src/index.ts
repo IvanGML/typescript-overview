@@ -1,23 +1,36 @@
-import { UserForm } from './View/UserForm';
-import { User } from './Models/User';
+import { UserList} from './View/UserList';
+import { User, UserProps } from './Models/User';
+import { Collection } from './Models/Collection';
+import { UserEdit } from './View/UserEdit';
 
-const user = User.buildUser({ name: 'Johnny', age: 49 })
+const rootEdit = document.getElementById('root-edit');
+const user = User.buildUser({ name: 'New user', age: 0 });
+if (rootEdit) {
+    const userEdit = new UserEdit(rootEdit, user);
+    userEdit.render();
+};
 
-const root = document.getElementById('root');
+const users = new Collection<User, UserProps>(
+    'http://localhost:3000/users',
+    (json: UserProps): User => {
+        return User.buildUser(json);
+    }
+);
 
-if (root) {
-    const userForm = new UserForm(root, user);
-    userForm.render();    
-} else {
-    throw new Error('Root element not found.')
-}
+const update = (): void => {
+    const root = document.getElementById('root');
+    
+    if(root) {
+        new UserList(root, users).render();
+    }
+};
 
-// const users = User.userCollection();
-// users.fetch();
-// users.events.on('change', () => console.log('%c Users have been fetched.', 'color: green'));
-// console.log(users.models);
+user.on('save', () => {
+    users.models = [];
+    users.fetch();
+    update();
+});
 
-// const user = User.buildUser({ });
-// user.set({ id:10, name: 'John', age: 30 });
-// user.on('save', () => console.log(user));
-// user.save();
+users.on('change', update);
+
+users.fetch();
