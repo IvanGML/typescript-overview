@@ -4,6 +4,7 @@ someOtherfoler/
 code/
 dist/
 .cache/
+build/
 
 # Compiled source #
 ###################
